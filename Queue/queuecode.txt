@@ -1,0 +1,152 @@
+#include <stdio.h>
+#include<stdlib.h>
+#define maxsize 5
+int queue[maxsize];
+int front=-1,rear=-1;
+void insert();
+void delete();
+void display();
+void search();
+
+int main()
+{
+    int choice;
+    printf("************WELCOME TO QUEUE OUR OPRATION************\n");
+    
+    while(choice!=5)
+    {
+        printf("\n1.Insert\n2.Delete\n3.Display\n4.Search\n5.Exit");
+        printf("\nenter your choice for queue opration\n");
+        scanf("%d",&choice);
+        switch(choice)
+        {
+            case 1:
+              insert();
+              break;
+            case 2:
+                delete();
+                break;
+           case 3:
+                display();
+                break;
+            case 4:
+                search();
+                break;
+            case 5:
+                printf("Exiting.....\n");
+                break;
+            default:
+                printf("wrong choice Enter correct choice\n");
+               
+        }
+        
+    }
+}
+
+
+ void insert()
+ {
+     int item;
+     
+        if(rear==maxsize-1)
+        {
+        printf(" Overflow queue u may not enter element in Queue\n");
+        }
+
+        printf("Enter element in queue\n");
+        scanf("%d",&item);
+        if(front==-1||rear==-1)
+        {
+            front=0;
+            rear=0;
+        }
+        else
+        {
+            rear=rear+1;
+        }
+        queue[rear]=item;
+        printf("\n%d value inserted in queue\n",queue[rear]);
+    
+ }
+ 
+
+ void delete()
+ {
+    int item;
+    if(front==-1||front>rear)
+    {
+        printf(" Underflow queue it may not delete any element\n");
+    }
+    else
+    {
+        item=queue[front];
+        if(front==rear)
+        {
+           front=-1;
+           rear=-1;
+           printf("\n%d value is deleted from queue\n",item);
+        }
+        else
+        {
+            front=front+1;
+            printf("\n%d value is deleted from queue\n",item);
+        }
+    }
+ }
+ 
+ void display()
+ {
+     int i;
+     if(front==-1||rear==-1)
+     {
+        printf("Empty Queue\n"); 
+     }
+     else
+     {
+         
+        for(i=front;i<=rear;i++)
+        {
+            
+            printf(" | %d ",queue[i]);
+            
+        }
+        printf("|\n");
+            
+     }
+     
+ }
+ 
+ void search()
+ {
+     int item,i,flag;
+     printf("Enter element to search from Queue\n");
+     scanf("%d",&item);
+     if(front==-1||rear==-1)
+     {
+        printf("Empty Queue\n"); 
+     }
+     for(i=front;i<=rear;i++)
+     {
+        if(queue[i]==item)
+        {
+            flag=i+1;
+            break;
+        }
+        else
+        {
+            flag=0;
+        }
+     }    
+        if(flag!=0)
+        {
+            printf("Item found at %d location in Queue\n",flag-1);
+        }
+        else
+        {
+            printf("Element not found\n");
+        }
+     
+ }
+ 
+ 
+

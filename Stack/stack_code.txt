@@ -1,0 +1,122 @@
+#include <stdio.h>
+    int stack[100],i,choice=0,n,top=-1,element;
+    void push();
+    void pop();
+    void show();
+    void search();
+    void main ()
+    {
+
+        printf("Enter the number of elements in the stack ");
+        scanf("%d",&n);
+        printf("*********Stack operations using array*********");
+
+    printf("\n----------------------------------------------\n");
+        while(choice != 5)
+        {
+            printf("Chose one from the below options...\n");
+            printf("\n1.Push\n2.Pop\n3.Show\n4.search\n5.exit\n");
+            printf("\n Enter your choice \n");
+            scanf("%d",&choice);
+            switch(choice)
+            {
+                case 1:
+                {
+                    push();
+                    break;
+                }
+                case 2:
+                {
+                    pop();
+                    break;
+                }
+                case 3:
+                {
+                    show();
+                    break;
+                }
+                case 4:
+                  {
+
+
+                    search();
+                    break;
+                  }
+                case 5:
+                {
+                    printf("Exiting....");
+                    break;
+                }
+                default:
+                {
+                    printf("Please Enter valid choice ");
+                }
+            }
+        }
+    }
+
+    void push ()
+    {
+        int val;
+        if (top == n )
+        printf("\n Overflow");
+        else
+        {
+            printf("Enter the value?");
+            scanf("%d",&val);
+            top = top +1;
+            stack[top] = val;
+        }
+    }
+
+    void pop ()
+    {
+        if(top == -1)
+        printf("Underflow");
+        else
+        {
+         printf("%dth is pop element deleted\n",top);
+         printf("Now the top is %dth \n",top-1);
+         top = top -1;
+
+        }
+    }
+    void show()
+    {
+        printf("---");
+        for (i=top;i>=0;i--)
+        {
+            printf("\n|%d|\n",stack[i]);
+            printf("---");
+        }
+        if(top == -1)
+        {
+            printf("Stack is empty");
+        }
+    }
+
+    void search()
+    {
+
+       int flag;
+        printf("\nEnter Item which is to be searched\n");
+        scanf("%d",&element);
+        for (i = top; i>=0; i--)
+        {
+            if(stack[i] == element)
+            {
+                flag = i;
+                break;
+            }
+            else
+            flag = 0;
+        }
+        if(flag != 0)
+        {
+            printf("\nItem found at location %d\n",flag);
+        }
+        else
+        {
+            printf("\nItem not found\n");
+        }
+    }
